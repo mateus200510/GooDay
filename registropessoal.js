@@ -1,9 +1,12 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
-export default function RegisterPersonal({ onOtherOptions } ) {
+export default function RegisterPersonal({ onOtherOptions, onBack }) {
   return (
     <View style={styles.container}>
+      <TouchableOpacity style={styles.topBack} onPress={onBack} accessibilityLabel="Voltar para a tela anterior">
+        <Text style={styles.topBackText}>←</Text>
+      </TouchableOpacity>
       <Image
         source={require('./assets/casual_dog.png')}
         style={styles.illustration}
@@ -84,5 +87,15 @@ const styles = StyleSheet.create({
     color: '#19b24a',
     fontSize: 16,
     fontWeight: '600',
+  },
+  topBack: {
+    alignSelf: 'flex-start',
+    marginLeft: 16,
+    marginBottom: 8,
+    padding: 8,
+  },
+  topBackText: {
+    fontSize: 28,
+    color: '#1f2937',
   },
 });

@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image } from 'react-native';
 
-export default function Entrar() {
+export default function Entrar({ onBack }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   return (
     <View style={styles.container}>
+      <TouchableOpacity style={styles.topBack} onPress={onBack} accessibilityLabel="Voltar para a tela anterior">
+        <Text style={styles.topBackText}>←</Text>
+      </TouchableOpacity>
       <Text style={styles.header}>Acesse</Text>
       <Text style={styles.subheader}>com E-mail e senha</Text>
 
@@ -193,5 +196,15 @@ const styles = StyleSheet.create({
   socialImage: {
     width: 44,
     height: 44,
+  },
+  topBack: {
+    alignSelf: 'flex-start',
+    marginLeft: 16,
+    marginBottom: 8,
+    padding: 8,
+  },
+  topBackText: {
+    fontSize: 28,
+    color: '#1f2937',
   },
 });

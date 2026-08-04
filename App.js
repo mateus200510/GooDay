@@ -8,11 +8,16 @@ export default function App() {
   const [screen, setScreen] = useState('splash'); // 'splash' | 'registropessoal' | 'entrar'
 
   if (screen === 'registropessoal') {
-    return <RegisterPersonal onOtherOptions={() => setScreen('entrar')} />;
+    return (
+      <RegisterPersonal
+        onOtherOptions={() => setScreen('entrar')}
+        onBack={() => setScreen('splash')}
+      />
+    );
   }
 
   if (screen === 'entrar') {
-    return <Entrar />;
+    return <Entrar onBack={() => setScreen('registropessoal')} />;
   }
 
   return (
