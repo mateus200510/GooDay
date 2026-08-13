@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image } from 'react-native';
 
-export default function Entrar({ onBack }) {
+export default function Entrar({ navigation, onBack }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+  const goBack = () => {
+    if (onBack) return onBack();
+    if (navigation && navigation.goBack) return navigation.goBack();
+  };
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.topBack} onPress={onBack} accessibilityLabel="Voltar para a tela anterior">
+      <TouchableOpacity style={styles.topBack} onPress={goBack} accessibilityLabel="Voltar para a tela anterior">
         <Text style={styles.topBackText}>←</Text>
       </TouchableOpacity>
       <Text style={styles.header}>Acesse</Text>
@@ -50,7 +53,10 @@ export default function Entrar({ onBack }) {
         <TouchableOpacity style={styles.accessButton} onPress={() => {}}>
           <Text style={styles.accessButtonText}>Acessar</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.registerButton} onPress={() => {}}>
+        <TouchableOpacity
+          style={styles.registerButton}
+          onPress={() => navigation && navigation.navigate('Conta')}
+        >
           <Text style={styles.registerButtonText}>Cadastrar</Text>
         </TouchableOpacity>
       </View>

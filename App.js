@@ -3,13 +3,15 @@ import React, { useState } from 'react';
 import { StyleSheet, Image, View, TouchableOpacity } from 'react-native';
 import RegisterPersonal from './registropessoal';
 import Entrar from './screens/entrar';
+import Conta from './screens/conta';
 
 export default function App() {
-  const [screen, setScreen] = useState('splash'); // 'splash' | 'registropessoal' | 'entrar'
+  const [screen, setScreen] = useState('splash'); // 'splash' | 'registropessoal' | 'entrar' | 'conta'
 
   if (screen === 'registropessoal') {
     return (
       <RegisterPersonal
+        onComoDeseja={() => setScreen('conta')}
         onOtherOptions={() => setScreen('entrar')}
         onBack={() => setScreen('splash')}
       />
@@ -18,6 +20,10 @@ export default function App() {
 
   if (screen === 'entrar') {
     return <Entrar onBack={() => setScreen('registropessoal')} />;
+  }
+
+  if (screen === 'conta') {
+    return <Conta onBack={() => setScreen('registropessoal')} />;
   }
 
   return (

@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
-export default function RegisterPersonal({ onOtherOptions, onBack }) {
+export default function RegisterPersonal({ onOtherOptions, onBack, onComoDeseja }) {
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.topBack} onPress={onBack} accessibilityLabel="Voltar para a tela anterior">
@@ -16,7 +16,13 @@ export default function RegisterPersonal({ onOtherOptions, onBack }) {
       <Text style={styles.title}>Ótimo dia!</Text>
       <Text style={styles.subtitle}>Como deseja acessar?</Text>
 
-      <TouchableOpacity style={styles.googleButton} onPress={() => {}} accessibilityLabel="Acessar com Google">
+      <TouchableOpacity
+        style={styles.googleButton}
+        onPress={() => {
+          if (onComoDeseja) return onComoDeseja();
+        }}
+        accessibilityLabel="Acessar com Google"
+      >
         <Image source={require('./assets/Google.png')} style={styles.googleIcon} resizeMode="contain" />
         <Text style={styles.googleButtonText}>Como deseja acessar?</Text>
       </TouchableOpacity>
